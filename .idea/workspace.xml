@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="157b0e37-d95a-40bb-bd28-b2df67e1d732" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phonebook/admin.py" afterPath="$PROJECT_DIR$/phonebook/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phonebook/models.py" afterPath="$PROJECT_DIR$/phonebook/models.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -543,7 +540,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521745430025</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="modified model names">
+      <created>1521747127026</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1521747127026</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -582,7 +586,8 @@
     <MESSAGE value="created models" />
     <MESSAGE value="modified admin" />
     <MESSAGE value="modified controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="modified controller" />
+    <MESSAGE value="modified model names" />
+    <option name="LAST_COMMIT_MESSAGE" value="modified model names" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
