@@ -27,7 +27,8 @@ class names_list(APIView):
         # current_user=request.user
         current_user=1
         print('Current User is ',current_user)
-        user_phonebook=names.objects.get(owner=current_user)
+        user_phonebook=names.objects.all()
+        # user_phonebook=names.objects.filter(owner=current_user)
         serializer=names_serializer(user_phonebook)
         return Response(serializer.data)
 
