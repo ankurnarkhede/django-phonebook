@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 
 
-
 class names(models.Model):
     name=models.CharField(max_length=100, null=True)
     owner=models.ForeignKey(User)
