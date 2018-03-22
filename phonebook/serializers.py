@@ -1,11 +1,23 @@
 
 
 from rest_framework import serializers
-from .models import url
+from .models import names, phone, email
 
-class url_serializer(serializers.ModelSerializer):
+class names_serializer(serializers.ModelSerializer):
     class Meta:
-        model=url
+        model=names
+        fields='__all__'
+        # fields=('ticker', 'volume')
+
+class phone_serializer(serializers.ModelSerializer):
+    class Meta:
+        model=phone
+        fields='__all__'
+        # fields=('ticker', 'volume')
+
+class email_serializer(serializers.ModelSerializer):
+    class Meta:
+        model=email
         fields='__all__'
         # fields=('ticker', 'volume')
 
