@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="157b0e37-d95a-40bb-bd28-b2df67e1d732" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/django_phonebook/settings.py" afterPath="$PROJECT_DIR$/django_phonebook/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phonebook/models.py" afterPath="$PROJECT_DIR$/phonebook/models.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -228,7 +226,14 @@
       <option name="project" value="LOCAL" />
       <updated>1521734057088</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="created models">
+      <created>1521737456812</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1521737456812</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -264,7 +269,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added gitignore" />
     <MESSAGE value="created phonebook app" />
-    <option name="LAST_COMMIT_MESSAGE" value="created phonebook app" />
+    <MESSAGE value="created models" />
+    <option name="LAST_COMMIT_MESSAGE" value="created models" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
