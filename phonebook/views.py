@@ -26,11 +26,20 @@ class names_list(APIView):
 
         # current_user=request.user
         current_user=1
-        print('Current User is ',current_user)
-        user_phonebook=names.objects.all()
-        # user_phonebook=names.objects.filter(owner=current_user)
-        serializer=names_serializer(user_phonebook)
-        return Response(serializer.data)
+        # print('Current User is ',current_user)
+        # user_phonebook=names.objects.all()
+        # # user_phonebook=names.objects.filter(owner=current_user)
+        # serializer=names_serializer(user_phonebook)
+        # return Response(serializer.data)
 
+
+        name = names.objects.get(owner=2)
+        print(name.id)
+        phon = phone.objects.filter (names_id=name.id)
+        # serializer = names_serializer (name)
+        serializer = phone_serializer (phon)
+        print(serializer)
+        print(serializer.data)
+        return Response (serializer.data)
 
 
