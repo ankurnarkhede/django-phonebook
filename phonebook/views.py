@@ -33,6 +33,7 @@ class names_list(APIView):
         # return Response(serializer.data)
 
 
+
         name = names.objects.get(owner=2)
         print(name.id)
         phon = phone.objects.filter (names_id=name.id)
