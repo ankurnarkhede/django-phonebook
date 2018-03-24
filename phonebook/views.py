@@ -13,7 +13,21 @@ from .serializers import names_serializer, phone_serializer, email_serializer, c
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 
-# Create your views here.
+# copied
+
+from django.views import generic
+from django.views.generic import View
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, HttpResponse
+from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
+from django.utils.decorators import method_decorator
+
+
+# rest views start
 
 class contacts(APIView):
 
@@ -146,5 +160,77 @@ class contacts(APIView):
             response_message="Contact "+name+" saved!"
 
             return JsonResponse({"message":response_message})
+
+
+
+# rest views end
+
+
+# template views start
+class LoginView(View):
+
+    def get(self, request):
+        if request.user.is_authenticated ():
+            # return HttpResponseRedirect(reverse ('phonebook:index'))
+            return render (request, "index.html")
+        return render (request, "auth.html")
+
+    def post(self, request):
+        if request.user.is_authenticated ():
+            return HttpResponseRedirect(reverse ('music:index'))
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+
+                return HttpResponseRedirect(reverse ('music:index'))
+            else:
+                return HttpResponse("Inactive user.")
+        else:
+            return HttpResponseRedirect (reverse ('music:login_user'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
