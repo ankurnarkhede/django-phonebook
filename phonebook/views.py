@@ -27,7 +27,9 @@ class names_list(APIView):
 
         # current_user=request.user
         name = names.objects.filter(owner=1)
-        serializer = names_serializer (name)
+        phon = phone.objects.filter(names_id=name.id)
+        emil = email.objects.filter(names_id=name)
+        serializer = names_serializer (name, many=True)
         print(serializer)
         print(serializer.data)
         return Response (serializer.data)
