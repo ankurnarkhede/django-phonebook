@@ -111,8 +111,6 @@ class contacts(APIView):
                     print (key + ':' + value)
                     email_id.append (request.POST.get (key, None))
 
-            print('phone=',phone_no)
-            print('email=',email_id)
 
             name = request.POST.get ('name', None)
 
