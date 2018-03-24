@@ -116,17 +116,22 @@ class contacts(APIView):
             print('email saved')
 
 
+            # # sending saved response
+            # name = saved_name[0]
+            # phon = phone.objects.filter (names_id=name)
+            # name.phones = phon
+            # emil = email.objects.filter (names_id=name)
+            # name.emails = emil
+            # print('mark 1')
+            #
+            # contact_serial = contacts_serializer (name, many=True)
+            # print('mark 2')
+            #
+            # # return Response (contact_serial.data)
 
-            # sending saved response
-            name = saved_name[0]
-            phon = phone.objects.filter (names_id=name)
-            name.phones = phon
-            emil = email.objects.filter (names_id=name)
-            name.emails = emil
-            print('mark 1')
+            response_message="Contact "+name+" saved!"
+            print(response_message)
 
-            contact_serial = contacts_serializer (name, many=True)
-            print('mark 2')
+            return JsonResponse({"message":response_message})
 
-            return Response (contact_serial.data)
 
