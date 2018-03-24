@@ -98,7 +98,6 @@ class contacts(APIView):
 
 
 
-
         else:
             phone_no=[]
             email_id=[]
