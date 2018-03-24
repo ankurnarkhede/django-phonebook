@@ -12,8 +12,8 @@ class names_serializer(serializers.ModelSerializer):
 class phone_serializer(serializers.ModelSerializer):
     class Meta:
         model=phone
-        # fields='__all__'
-        fields=('phone_no', 'status')
+        fields='__all__'
+        # fields=('phone_no', 'status')
 
 class email_serializer(serializers.ModelSerializer):
     class Meta:
