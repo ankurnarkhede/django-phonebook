@@ -88,6 +88,7 @@ class contacts(APIView):
 
 
         else:
+            print('inside else')
             name = request.POST.get ('name', None)
             phone_no = request.POST.get ('phone_no', None)
             email_id = request.POST.get ('email_id', None)
@@ -98,32 +99,34 @@ class contacts(APIView):
                 name=name,
                 owner=temp_user,
             ).save ()
-
+            print('name saved')
             # taking object of recently saved name
             saved_name = names.objects.filter (name=name, owner=temp_user).order_by ('-id')[:1]
 
             phone (
-                names_id=saved_name.id,
+                names_id=saved_name[0],
                 phone_no=phone_no,
             ).save ()
+            print('phone saved')
 
             email (
-                names_id=saved_name.id,
+                names_id=saved_name[0],
                 email_id=email_id,
             ).save ()
+            print('email saved')
+
+
 
             # sending saved response
-            name = saved_name
-            for i in range (0, len (name)):
-                phon = phone.objects.filter (names_id=name[i].id)
-                name.phones = phon
-                emil = email.objects.filter (names_id=name[i].id)
-                name.emails = emil
+            name = saved_name[0]
+            phon = phone.objects.filter (names_id=name)
+            name.phones = phon
+            emil = email.objects.filter (names_id=name)
+            name.emails = emil
+            print('mark 1')
 
             contact_serial = contacts_serializer (name, many=True)
-            # print(contact_serial)
-            # print(contact_serial.data)
+            print('mark 2')
+
             return Response (contact_serial.data)
-
-
 
