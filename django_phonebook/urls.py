@@ -18,7 +18,7 @@ urlpatterns = [
 
 
     # template url start
-    url (r'^auth/', views.contacts.as_view ()),
+    url (r'^auth/', views.LoginView.as_view ()),
 
 
     # template url end
