@@ -8,7 +8,7 @@ from rest_framework import status
 from django.http import JsonResponse
 
 from .models import names, phone, email
-from .serializers import names_serializer, phone_serializer, email_serializer
+from .serializers import names_serializer, phone_serializer, email_serializer, contacts_serializer
 
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
@@ -36,9 +36,9 @@ class names_list(APIView):
 
 
 
-        serializer = names_serializer (name, many=True)
-        print(serializer)
-        print(serializer.data)
-        return Response (serializer.data)
+        contact_serial = contacts_serializer (name, many=True)
+        print(contact_serial)
+        print(contact_serial.data)
+        return Response (contact_serial.data)
 
 
