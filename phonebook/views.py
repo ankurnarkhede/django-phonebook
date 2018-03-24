@@ -171,13 +171,14 @@ class LoginView(View):
 
     def get(self, request):
         if request.user.is_authenticated ():
-            # return HttpResponseRedirect(reverse ('phonebook:index'))
+            # return HttpResponseRedirect(reverse ('index'))
             return render (request, "index.html")
         return render (request, "auth.html")
 
     def post(self, request):
         if request.user.is_authenticated ():
-            return HttpResponseRedirect(reverse ('music:index'))
+            # return HttpResponseRedirect(reverse ('music:index'))
+            return render (request, "index.html")
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
@@ -186,11 +187,25 @@ class LoginView(View):
             if user.is_active:
                 login(request, user)
 
-                return HttpResponseRedirect(reverse ('music:index'))
+                # return HttpResponseRedirect(reverse ('music:index'))
+                return render (request, "index.html")
             else:
                 return HttpResponse("Inactive user.")
         else:
-            return HttpResponseRedirect (reverse ('music:login_user'))
+            return HttpResponseRedirect (reverse ('login_user'))
+
+
+
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        # form = UserForm (request.POST or None)
+        # context = {
+        #     "form": form,
+        # }
+        return HttpResponseRedirect (reverse ('login_user'))
+
 
 
 

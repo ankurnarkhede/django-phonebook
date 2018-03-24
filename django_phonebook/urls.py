@@ -19,7 +19,8 @@ urlpatterns = [
 
     # template url start
     url (r'^auth/', views.LoginView.as_view ()),
-
+    url (r'^login/$', views.LoginView.as_view (), name='login_user'),
+    url (r'^logout/$', views.LogoutView.as_view (), name='logout_user'),
 
     # template url end
 
