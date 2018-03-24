@@ -69,25 +69,26 @@ class contacts(APIView):
 
             temp_user = User.objects.get (username=request.user)
 
-            names (
+            usr=names (
                 name=name,
                 owner=temp_user,
-            ).save ()
+            )
+            usr.save()
 
             # taking object of recently saved name
-            saved_name = names.objects.filter (name=name, owner=temp_user).order_by ('-id')[:1]
+            # saved_name = names.objects.filter (name=name, owner=temp_user).order_by ('-id')[:1]
 
             # saving multiple phones
             for j in range (0, len (phone_no), +1):
                 phone (
-                    names_id=saved_name[0],
+                    names_id=usr,
                     phone_no=phone_no[j],
                 ).save ()
 
             # saving multiple emails
             for k in range (0, len (email_id), +1):
                 email (
-                    names_id=saved_name[0],
+                    names_id=usr,
                     email_id=email_id[k],
                 ).save ()
 
@@ -116,20 +117,21 @@ class contacts(APIView):
 
             temp_user = User.objects.get (username='lol')
 
-            names (
+            usr=names (
                 name=name,
                 owner=temp_user,
-            ).save ()
+            )
+            usr.save()
 
 
             # taking object of recently saved name
-            saved_name = names.objects.filter (name=name, owner=temp_user).order_by ('-id')[:1]
+            # saved_name = names.objects.filter (name=name, owner=temp_user).order_by ('-id')[:1]
 
             # saving multiple phones
             for j in range(0, len(phone_no),+1):
 
                 phone (
-                    names_id=saved_name[0],
+                    names_id=usr,
                     phone_no=phone_no[j],
                 ).save ()
 
@@ -137,7 +139,7 @@ class contacts(APIView):
             for k in range(0, len(email_id),+1):
 
                 email (
-                    names_id=saved_name[0],
+                    names_id=usr,
                     email_id=email_id[k],
                 ).save ()
 
