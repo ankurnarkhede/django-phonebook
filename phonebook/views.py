@@ -100,7 +100,7 @@ class contacts(APIView):
             ).save ()
 
             # taking object of recently saved name
-            saved_name = names.objects.get (name=name, owner=temp_user).order_by ('-id').first (1)
+            saved_name = names.objects.filter (name=name, owner=temp_user).order_by ('-id')[:1]
 
             phone (
                 names_id=saved_name.id,
