@@ -51,47 +51,70 @@ class contacts(APIView):
 
     def post(self, request):
         if request.user.is_authenticated ():
+
+            # if user authenticated
+            phone_no = []
+            email_id = []
+            for i, key in enumerate (request.POST):
+                value = request.POST[key]
+                if ('phone_no' in key):
+                    print (key + ':' + value)
+                    phone_no.append (request.POST.get (key, None))
+
+                if ('email_id' in key):
+                    print (key + ':' + value)
+                    email_id.append (request.POST.get (key, None))
+
             name = request.POST.get ('name', None)
-            phone_no = request.POST.get ('phone_no', None)
-            email_id = request.POST.get ('email_id', None)
+
+            temp_user = User.objects.get (username=request.user)
 
             names (
                 name=name,
-                owner=request.user,
+                owner=temp_user,
             ).save ()
 
             # taking object of recently saved name
-            saved_name = names.objects.get(name=name, owner=request.user).order_by('-id').first(1)
+            saved_name = names.objects.filter (name=name, owner=temp_user).order_by ('-id')[:1]
 
-            phone(
-                names_id=saved_name.id,
-                phone_no=phone_no,
-            ).save()
+            # saving multiple phones
+            for j in range (0, len (phone_no), +1):
+                phone (
+                    names_id=saved_name[0],
+                    phone_no=phone_no[j],
+                ).save ()
 
-            email (
-                names_id=saved_name.id,
-                email_id=email_id,
-            ).save ()
+            # saving multiple emails
+            for k in range (0, len (email_id), +1):
+                email (
+                    names_id=saved_name[0],
+                    email_id=email_id[k],
+                ).save ()
 
-            # sending saved response
-            name=saved_name
-            for i in range (0, len (name)):
-                phon = phone.objects.filter (names_id=name[i].id)
-                name.phones = phon
-                emil = email.objects.filter (names_id=name[i].id)
-                name.emails = emil
+            response_message = "Contact " + name + " saved!"
 
-            contact_serial = contacts_serializer (name, many=True)
-            # print(contact_serial)
-            # print(contact_serial.data)
-            return Response (contact_serial.data)
+            return JsonResponse ({"message": response_message})
+
+
 
 
         else:
-            print('inside else')
+            phone_no=[]
+            email_id=[]
+            for i,key in enumerate(request.POST):
+                value = request.POST[key]
+                if('phone_no' in key):
+                    print (key+':'+value)
+                    phone_no.append (request.POST.get (key, None))
+
+                if ('email_id' in key):
+                    print (key + ':' + value)
+                    email_id.append (request.POST.get (key, None))
+
+            print('phone=',phone_no)
+            print('email=',email_id)
+
             name = request.POST.get ('name', None)
-            phone_no = request.POST.get ('phone_no', None)
-            email_id = request.POST.get ('email_id', None)
 
             temp_user = User.objects.get (username='lol')
 
@@ -99,38 +122,29 @@ class contacts(APIView):
                 name=name,
                 owner=temp_user,
             ).save ()
-            print('name saved')
+
+
             # taking object of recently saved name
             saved_name = names.objects.filter (name=name, owner=temp_user).order_by ('-id')[:1]
 
-            phone (
-                names_id=saved_name[0],
-                phone_no=phone_no,
-            ).save ()
-            print('phone saved')
+            # saving multiple phones
+            for j in range(0, len(phone_no),+1):
 
-            email (
-                names_id=saved_name[0],
-                email_id=email_id,
-            ).save ()
-            print('email saved')
+                phone (
+                    names_id=saved_name[0],
+                    phone_no=phone_no[j],
+                ).save ()
 
+            # saving multiple emails
+            for k in range(0, len(email_id),+1):
 
-            # # sending saved response
-            # name = saved_name[0]
-            # phon = phone.objects.filter (names_id=name)
-            # name.phones = phon
-            # emil = email.objects.filter (names_id=name)
-            # name.emails = emil
-            # print('mark 1')
-            #
-            # contact_serial = contacts_serializer (name, many=True)
-            # print('mark 2')
-            #
-            # # return Response (contact_serial.data)
+                email (
+                    names_id=saved_name[0],
+                    email_id=email_id[k],
+                ).save ()
+
 
             response_message="Contact "+name+" saved!"
-            print(response_message)
 
             return JsonResponse({"message":response_message})
 
