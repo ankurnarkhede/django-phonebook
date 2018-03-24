@@ -15,30 +15,115 @@ from django.contrib.auth import get_user_model
 
 # Create your views here.
 
-class names_list(APIView):
+class contacts(APIView):
 
     def get(self, request):
 
         if request.user.is_authenticated ():
-            pass
+            current_user=request.user
+            name = names.objects.filter (owner=current_user)
+            for i in range (0, len (name)):
+                phon = phone.objects.filter (names_id=name[i].id)
+                name.phones = phon
+                emil = email.objects.filter (names_id=name[i].id)
+                name.emails = emil
+
+            contact_serial = contacts_serializer (name, many=True)
+            # print(contact_serial)
+            # print(contact_serial.data)
+            return Response (contact_serial.data)
+
         else:
-            pass
+            # current_user=request.user
+            name = names.objects.all()
+            for i in range (0, len (name)):
+                phon = phone.objects.filter (names_id=name[i].id)
+                name.phones = phon
+                emil = email.objects.filter (names_id=name[i].id)
+                name.emails = emil
+
+            contact_serial = contacts_serializer (name, many=True)
+            # print(contact_serial)
+            # print(contact_serial.data)
+            return Response (contact_serial.data)
 
 
 
-        # current_user=request.user
-        name = names.objects.filter(owner=1)
-        for i in range(0, len(name)):
-            phon = phone.objects.filter (names_id=name[i].id)
-            name.phones=phon
-            emil = email.objects.filter (names_id=name[i].id)
-            name.emails = emil
+    def post(self, request):
+        if request.user.is_authenticated ():
+            name = request.POST.get ('name', None)
+            phone_no = request.POST.get ('phone_no', None)
+            email_id = request.POST.get ('email_id', None)
+
+            names (
+                name=name,
+                owner=request.user,
+            ).save ()
+
+            # taking object of recently saved name
+            saved_name = names.objects.get(name=name, owner=request.user).order_by('-id').first(1)
+
+            phone(
+                names_id=saved_name.id,
+                phone_no=phone_no,
+            ).save()
+
+            email (
+                names_id=saved_name.id,
+                email_id=email_id,
+            ).save ()
+
+            # sending saved response
+            name=saved_name
+            for i in range (0, len (name)):
+                phon = phone.objects.filter (names_id=name[i].id)
+                name.phones = phon
+                emil = email.objects.filter (names_id=name[i].id)
+                name.emails = emil
+
+            contact_serial = contacts_serializer (name, many=True)
+            # print(contact_serial)
+            # print(contact_serial.data)
+            return Response (contact_serial.data)
 
 
+        else:
+            name = request.POST.get ('name', None)
+            phone_no = request.POST.get ('phone_no', None)
+            email_id = request.POST.get ('email_id', None)
 
-        contact_serial = contacts_serializer (name, many=True)
-        print(contact_serial)
-        print(contact_serial.data)
-        return Response (contact_serial.data)
+            temp_user = User.objects.get (username='lol')
+
+            names (
+                name=name,
+                owner=temp_user,
+            ).save ()
+
+            # taking object of recently saved name
+            saved_name = names.objects.get (name=name, owner=temp_user).order_by ('-id').first (1)
+
+            phone (
+                names_id=saved_name.id,
+                phone_no=phone_no,
+            ).save ()
+
+            email (
+                names_id=saved_name.id,
+                email_id=email_id,
+            ).save ()
+
+            # sending saved response
+            name = saved_name
+            for i in range (0, len (name)):
+                phon = phone.objects.filter (names_id=name[i].id)
+                name.phones = phon
+                emil = email.objects.filter (names_id=name[i].id)
+                name.emails = emil
+
+            contact_serial = contacts_serializer (name, many=True)
+            # print(contact_serial)
+            # print(contact_serial.data)
+            return Response (contact_serial.data)
+
 
 

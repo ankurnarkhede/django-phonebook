@@ -7,8 +7,8 @@ from phonebook import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url (r'^$', views.names_list.as_view ()),
-
+    url (r'^get-contacts/', views.contacts.as_view ()),
+    url (r'^post-contacts/', views.contacts.as_view ()),
 
 
 ]
