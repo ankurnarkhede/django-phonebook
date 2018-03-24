@@ -25,6 +25,7 @@ class names_list(APIView):
             pass
 
 
+
         # current_user=request.user
         name = names.objects.filter(owner=1)
         for i in range(0, len(name)):
