@@ -27,8 +27,14 @@ class names_list(APIView):
 
         # current_user=request.user
         name = names.objects.filter(owner=1)
-        phon = phone.objects.filter(names_id=name.id)
-        emil = email.objects.filter(names_id=name)
+        for i in range(0, len(name)):
+            phon = phone.objects.filter (names_id=name[i].id)
+            name.phones=phon
+            emil = email.objects.filter (names_id=name[i].id)
+            name.emails = emil
+
+
+
         serializer = names_serializer (name, many=True)
         print(serializer)
         print(serializer.data)
