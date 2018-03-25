@@ -70,7 +70,7 @@
 
     <div class="row" id="login-page">
         <div class="col s12 z-depth-4 card-panel">
-            <form class="login-form" style="width: 400px;" method="post" action="{% url 'login_user'%}">
+            <form class="login-form" style="width: 400px;" method="post" action="{% url 'signup_user'%}">
                 <div class="row">
                     <div class="input-field col s12 center">
                         <img alt="" class=" responsive-img valign profile-image-login" src="{% static 'login/images/phonebook-icon.png' %}">
@@ -108,7 +108,6 @@
                             </div>
                         </div>
 
-                        {% csrf_token %}
                         <div class="row">
                             <div class="input-field col s12">
 {#                                <a class="btn waves-effect waves-light col s12" href="index.html">Login</a>#}
@@ -129,28 +128,31 @@
 
                     <div class="col s12" id="signup">
 
-                        <div class="row margin">
-                            <div class="input-field col s12">
-                                <i class="mdi-social-person-outline prefix"></i> <input id="username1" name="username1" type="text"> <label class="center-align" for="username1">Username</label>
-                            </div>
-                        </div>
-                        <div class="row margin">
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">email</i> <input id="email1" name="email1" type="text"> <label class="center-align" for="email1">Email</label>
-                            </div>
-                        </div>
-                      <!--   <div class="row margin">
-                            <div class="input-field col s12">
-                                <i class="mdi-social-person-outline prefix"></i> <input id="username" type="text"> <label class="center-align" for="username">Username</label>
-                            </div>
-                        </div> -->
-                        <div class="row margin">
-                            <div class="input-field col s12">
-                                <i class="mdi-action-lock-outline prefix"></i> <input id="password1" name="password1" type="password"> <label for="password1">Password</label>
-                            </div>
-                        </div>
+                            {% include 'form-template.html' %}
 
-                        {% csrf_token %}
+
+
+{#                        <div class="row margin">#}
+{#                            <div class="input-field col s12">#}
+{#                                <i class="mdi-social-person-outline prefix"></i> <input id="username1" name="username1" type="text"> <label class="center-align" for="username1">Username</label>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="row margin">#}
+{#                            <div class="input-field col s12">#}
+{#                                <i class="material-icons prefix">email</i> <input id="email1" name="email1" type="text"> <label class="center-align" for="email1">Email</label>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                      <!--   <div class="row margin">#}
+{#                            <div class="input-field col s12">#}
+{#                                <i class="mdi-social-person-outline prefix"></i> <input id="username" type="text"> <label class="center-align" for="username">Username</label>#}
+{#                            </div>#}
+{#                        </div> -->#}
+{#                        <div class="row margin">#}
+{#                            <div class="input-field col s12">#}
+{#                                <i class="mdi-action-lock-outline prefix"></i> <input id="password1" name="password1" type="password"> <label for="password1">Password</label>#}
+{#                            </div>#}
+{#                        </div>#}
+
                         <div class="row">
                             <div class="input-field col s12">
 {#                                <a class="btn waves-effect waves-light col s12" href="index.html">SignUP</a>#}

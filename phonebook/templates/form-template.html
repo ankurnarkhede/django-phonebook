@@ -1,0 +1,21 @@
+
+
+
+{% for field in form %}
+
+    <div class=" row">
+        <div class="input-field col s12">
+            <i class="material-icons prefix">edit</i>
+{#            <input name="name" id="name" type="text" class="validate" required="required">#}
+            {{ field  }}
+            <label for="name">{{ field.label_tag }}</label>
+            {% if field.errors %}
+                <span class="helper-text" data-error="{{ field.errors }}" data-success="right">Helper Text</span>
+            {% endif %}
+        </div>
+    </div>
+
+{% endfor %}
+
+
+
