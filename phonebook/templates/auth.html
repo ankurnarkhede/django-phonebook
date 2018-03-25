@@ -12,7 +12,7 @@
     <meta content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google." name="description">
     <meta content="materialize, admin template, dashboard template, flat admin template, responsive admin template," name="keywords">
 
-    <title>Login | PhoneBook</title>
+    <title>Auth | PhoneBook</title>
 
     <link href="" rel="icon" sizes="32x32"><!-- Favicons-->
     <link href="" rel="apple-touch-icon-precomposed"><!-- For iPhone -->
@@ -33,26 +33,7 @@
 </head>
 
 
-<script>
 
-    $(document).ready(function(){
-    $("#login_btn").click(function(){
-        $("#signup").fadeOut();
-        $("#login").fadeIn();
-
-    });
-});
-
-    $(document).ready(function(){
-    $("#signup_btn").click(function(){
-        $("#login").fadeOut();
-        $("#signup").fadeIn();
-
-    });
-});
-
-
-</script>
 
 
 
@@ -70,7 +51,8 @@
 
     <div class="row" id="login-page">
         <div class="col s12 z-depth-4 card-panel">
-            <form class="login-form" style="width: 400px;" method="post" action="{% url 'signup_user'%}">
+            <form class="login-form" id="auth-form" style="width: 400px;" method="post" action="{% url 'login_user'%}">
+                {% csrf_token %}
                 <div class="row">
                     <div class="input-field col s12 center">
                         <img alt="" class=" responsive-img valign profile-image-login" src="{% static 'login/images/phonebook-icon.png' %}">
@@ -110,18 +92,17 @@
 
                         <div class="row">
                             <div class="input-field col s12">
-{#                                <a class="btn waves-effect waves-light col s12" href="index.html">Login</a>#}
                                 <button type="submit" class="btn waves-effect waves-light col s12">Login</button>
                             </div>
                         </div>
-                        <div class="row">
-                            <!-- <div class="input-field col s6 m6 l6">
-                                <p class="margin medium-small"><a href="page-register.html">Register Now!</a></p>
-                            </div> -->
-                            <div class="input-field col s6 m6 l6 offset-s3 offset-m3 offset-l3">
-                                <p class="margin center-align  medium-small"><a href="page-forgot-password.html">Forgot password ?</a></p>
-                            </div>
-                        </div>
+{#                        <div class="row">#}
+{#                            <!-- <div class="input-field col s6 m6 l6">#}
+{#                                <p class="margin medium-small"><a href="page-register.html">Register Now!</a></p>#}
+{#                            </div> -->#}
+{#                            <div class="input-field col s6 m6 l6 offset-s3 offset-m3 offset-l3">#}
+{#                                <p class="margin center-align  medium-small"><a href="page-forgot-password.html">Forgot password ?</a></p>#}
+{#                            </div>#}
+{#                        </div>#}
                     </div>
 
 
@@ -129,8 +110,6 @@
                     <div class="col s12" id="signup">
 
                             {% include 'form-template.html' %}
-
-
 
 {#                        <div class="row margin">#}
 {#                            <div class="input-field col s12">#}
@@ -155,7 +134,6 @@
 
                         <div class="row">
                             <div class="input-field col s12">
-{#                                <a class="btn waves-effect waves-light col s12" href="index.html">SignUP</a>#}
                                 <button type="submit" class="btn waves-effect waves-light col s12">Signup</button>
 
                             </div>
@@ -204,11 +182,31 @@ Scripts
 
 <script src="{% static 'login/js/custom-script.js' %}" type="text/javascript">
 </script>
+
+{#custom stripts#}
+<script>
+
+$(document).ready(function() {
+    $("#login_btn").click(function () {
+
+        $("#signup").fadeOut();
+        $("#login").fadeIn();
+        $("#auth-form").attr("action", "/auth/");
+
+    });
+
+    $("#signup_btn").click(function () {
+
+        $("#login").fadeOut();
+        $("#signup").fadeIn();
+        $("#auth-form").attr("action", "/signup/");
+
+    });
+});
+
+
+</script>
+
 </body>
 </html>
 
-
-
-
-</body>
-</html>

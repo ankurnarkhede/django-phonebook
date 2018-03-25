@@ -187,42 +187,46 @@ class UserFormView(View):
     def post(self, request):
         if request.user.is_authenticated ():
             return HttpResponseRedirect(reverse ('music:index'))
-        # form=self.form_class(request.POST)
-        form=request.POST
+        form=self.form_class(request.POST)
 
 
-        # if form.is_valid():
+        if form.is_valid():
 
-        user=form.save(commit=False)
+            user=form.save(commit=False)
 
-        # cleaned normalized data
-        email = form.cleaned_data['email1']
-        username = form.cleaned_data['username1']
-        password = form.cleaned_data['password1']
-        user.set_password(password)
-        user.save()
+            # cleaned normalized data
+            email = form.cleaned_data['email']
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user.set_password(password)
+            user.save()
 
-        # returns user objects if credentials are correct
-        user=authenticate(username=username, password=password)
+            # returns user objects if credentials are correct
+            user=authenticate(username=username, password=password)
 
-        if user is not None:
+            if user is not None:
 
-            if user.is_active:
-                login(request, user)
-                # return redirect('music:index')
-                return render (request, "index.html")
+                if user.is_active:
+                    login(request, user)
+                    # return redirect('music:index')
+                    return render (request, "index.html")
 
         # return render (request, self.template_name, {'form': form})
         return HttpResponseRedirect (reverse ('login_user'))
 
 
 class LoginView(View):
+    form_class = UserForm
+    template_name = 'auth.html'
 
+    # display blank form
     def get(self, request):
         if request.user.is_authenticated ():
             # return HttpResponseRedirect(reverse ('index'))
             return render (request, "index.html")
-        return render (request, "auth.html")
+        form = self.form_class (None)
+        return render (request, self.template_name, {'form': form})
+
 
     def post(self, request):
         if request.user.is_authenticated ():
