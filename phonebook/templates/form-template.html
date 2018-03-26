@@ -5,7 +5,16 @@
 
     <div class=" row">
         <div class="input-field col s12">
+
+        {% if 'email' in field %}
+            <i class="material-icons prefix">email</i>
+        {% elif 'username' in field %}
+            <i class="material-icons prefix">person</i>
+        {% elif 'password' in field %}
+            <i class="material-icons prefix">vpn_key</i>
+        {% else %}
             <i class="material-icons prefix">edit</i>
+        {% endif %}
 {#            <input name="name" id="name" type="text" class="validate" required="required">#}
             {{ field  }}
             {{ field.label_tag }}
