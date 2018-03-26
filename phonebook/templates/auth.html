@@ -51,8 +51,8 @@
 
     <div class="row" id="login-page">
         <div class="col s12 z-depth-4 card-panel">
-            <form class="login-form" id="auth-form" style="width: 400px;" method="post" action="{% url 'login_user'%}">
-                {% csrf_token %}
+{#            <form class="login-form" id="auth-form" style="width: 400px;" method="post" action="{% url 'login_user'%}">#}
+{#                {% csrf_token %}#}
                 <div class="row">
                     <div class="input-field col s12 center">
                         <img alt="" class=" responsive-img valign profile-image-login" src="{% static 'login/images/phonebook-icon.png' %}">
@@ -73,6 +73,10 @@
                             </li>
                         </ul>
                     </div>
+
+                <form class="login-form" id="auth-form" style="width: 400px;" method="post" action="{% url 'login_user'%}">
+                {% csrf_token %}
+
                     <div class="col s12" id="login">
                         <div class="row margin">
                             <div class="input-field col s12">
@@ -104,9 +108,11 @@
 {#                            </div>#}
 {#                        </div>#}
                     </div>
+                </form>
 
 
-
+                <form class="signup-form" id="auth-form" style="width: 400px;" method="post" action="{% url 'signup_user'%}">
+                {% csrf_token %}
                     <div class="col s12" id="signup">
 
                             {% include 'form-template.html' %}
@@ -152,9 +158,9 @@
 
                     </div>
 
-
+                </form>
                 </div>
-            </form>
+
                     <p class="center-align">Developed by <a href="https://www.linkedin.com/in/ankurnarkhede">Ankur Narkhede</a></p>
         </div>
     </div>
@@ -188,21 +194,23 @@ Scripts
 <script>
 
 $(document).ready(function() {
-    $("#login_btn").click(function () {
 
-        $("#signup").fadeOut();
-        $("#login").fadeIn();
-        $("#auth-form").attr("action", "/auth/");
+{#    $("#login_btn").click(function () {#}
+{##}
+{#        $("#signup").fadeOut();#}
+{#        $("#login").fadeIn();#}
+{#        $("#auth-form").attr("action", "/auth/");#}
+{##}
+{#    });#}
+{##}
+{#    $("#signup_btn").click(function () {#}
+{##}
+{#        $("#login").fadeOut();#}
+{#        $("#signup").fadeIn();#}
+{#        $("#auth-form").attr("action", "/signup/");#}
+{##}
+{#    });#}
 
-    });
-
-    $("#signup_btn").click(function () {
-
-        $("#login").fadeOut();
-        $("#signup").fadeIn();
-        $("#auth-form").attr("action", "/signup/");
-
-    });
 });
 
 
