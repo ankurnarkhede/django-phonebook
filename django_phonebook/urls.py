@@ -11,15 +11,13 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     # REST url start
-    url (r'^get-contacts/', views.contacts.as_view ()),
-    url (r'^post-contacts/', views.contacts.as_view ()),
+    url (r'^contacts/', views.contacts.as_view (), name='contacts'),
 
     # rest urls end
 
 
     # template url start
     url (r'^auth/$', views.LoginView.as_view (), name='login_user'),
-    # url (r'^login/$', views.LoginView.as_view (), name='login_user'),
     url (r'^signup/$', views.UserFormView.as_view (), name='signup_user'),
     url (r'^logout/$', views.LogoutView.as_view (), name='logout_user'),
     url (r'^$', views.Home.as_view (), name='index'),
