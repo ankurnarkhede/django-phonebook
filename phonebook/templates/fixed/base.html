@@ -38,6 +38,9 @@
 
 
     <!-- loader s -->
+
+
+
     <div class="loader-bg"></div>
     <div class="loader">
         <div class="preloader-wrapper big active">
@@ -79,6 +82,8 @@
             </div>
         </div>
     </div>
+
+
     <!-- loader e -->
 
 
@@ -105,14 +110,14 @@
         <div class="side-nav-wrapper">
             <div class="sidebar-profile">
                 <div class="sidebar-profile-image">
-                    <img alt="" class="circle" src="assets/images/profile-image.png" style="width: 80px; height: 80px;   ">
+                    <img alt="" class="circle" src="{% static 'assets/images/profile-image.png' %}" style="width: 80px; height: 80px;   ">
                 </div>
 
 
                 <div class="sidebar-profile-info">
 
-{#                    <p>{{ $user->name }}</p>#}
-{#                    <span> {{ $user->type }}</span>#}
+                    <p>{{ request.user.username }}</p>
+                    <span> {{ request.user.email }}</span>
 
                 </div>
             </div>
@@ -141,7 +146,7 @@
                 </li>
 
                 <li class="no-padding  ">
-{#                    <a class="waves-effect waves-grey " href="{% url 'logout' %}"><i class="material-icons">exit_to_app</i>Log Out</a>#}
+                    <a class="waves-effect waves-grey " href="{% url 'logout_user' %}"><i class="material-icons">exit_to_app</i>Log Out</a>
                 </li>
             </ul>
         </div>
@@ -177,43 +182,43 @@
 </div>
 
 <!-- Javascripts -->
-    <script src="assets/plugins/jquery/jquery-2.2.0.min.js">
+    <script src="{% static 'assets/plugins/jquery/jquery-2.2.0.min.js' %}">
     </script>
-    <script src="assets/plugins/materialize/js/materialize.min.js">
+    <script src="{% static 'assets/plugins/materialize/js/materialize.min.js' %}">
     </script>
-    <script src="assets/plugins/material-preloader/js/materialPreloader.min.js">
+    <script src="{% static 'assets/plugins/material-preloader/js/materialPreloader.min.js' %}">
     </script>
-    <script src="assets/plugins/jquery-blockui/jquery.blockui.js">
+    <script src="{% static 'assets/plugins/jquery-blockui/jquery.blockui.js' %}">
     </script>
-    <script src="assets/plugins/waypoints/jquery.waypoints.min.js">
+    <script src="{% static 'assets/plugins/waypoints/jquery.waypoints.min.js' %}">
     </script>
-    <script src="assets/plugins/counter-up-master/jquery.counterup.min.js">
+    <script src="{% static 'assets/plugins/counter-up-master/jquery.counterup.min.js' %}">
     </script>
-    <script src="assets/plugins/jquery-sparkline/jquery.sparkline.min.js">
+    <script src="{% static 'assets/plugins/jquery-sparkline/jquery.sparkline.min.js' %}">
     </script>
-    <script src="assets/plugins/chart.js/chart.min.js">
+    <script src="{% static 'assets/plugins/chart.js/chart.min.js' %}">
     </script>
-    <script src="assets/plugins/flot/jquery.flot.min.js">
+    <script src="{% static 'assets/plugins/flot/jquery.flot.min.js' %}">
     </script>
-    <script src="assets/plugins/flot/jquery.flot.time.min.js">
+    <script src="{% static 'assets/plugins/flot/jquery.flot.time.min.js' %}">
     </script>
-    <script src="assets/plugins/flot/jquery.flot.symbol.min.js">
+    <script src="{% static 'assets/plugins/flot/jquery.flot.symbol.min.js' %}">
     </script>
-    <script src="assets/plugins/flot/jquery.flot.resize.min.js">
+    <script src="{% static 'assets/plugins/flot/jquery.flot.resize.min.js' %}">
     </script>
-    <script src="assets/plugins/flot/jquery.flot.tooltip.min.js">
+    <script src="{% static 'assets/plugins/flot/jquery.flot.tooltip.min.js' %}">
     </script>
-    <script src="assets/plugins/curvedlines/curvedLines.js">
+    <script src="{% static 'assets/plugins/curvedlines/curvedLines.js' %}">
     </script>
-    <script src="assets/plugins/peity/jquery.peity.min.js">
+    <script src="{% static 'assets/plugins/peity/jquery.peity.min.js' %}">
     </script>
-    <script src="assets/js/alpha.min.js">
+    <script src="{% static 'assets/js/alpha.min.js' %}">
     </script>
-    <script src="assets/js/pages/dashboard.js">
+    <script src="{% static 'assets/js/pages/dashboard.js' %}">
     </script>
-    <script src="assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="assets/js/alpha.min.js"></script>
-    <script src="assets/js/pages/table-data.js"></script>
+    <script src="{% static 'assets/plugins/datatables/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'assets/js/alpha.min.js' %}"></script>
+    <script src="{% static 'assets/js/pages/table-data.js' %}"></script>
 
 {#    custom#}
 

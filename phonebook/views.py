@@ -177,8 +177,7 @@ class UserFormView(View):
     # display blank form
     def get(self, request):
         if request.user.is_authenticated ():
-        # return HttpResponseRedirect(reverse ('index'))
-                return render (request, "index.html")
+            return HttpResponseRedirect(reverse ('index'))
         form=self.form_class(None)
         return render(request, self.template_name, {'form':form})
 
@@ -186,7 +185,7 @@ class UserFormView(View):
     # process form data
     def post(self, request):
         if request.user.is_authenticated ():
-            return HttpResponseRedirect(reverse ('music:index'))
+            return HttpResponseRedirect(reverse ('index'))
         form=self.form_class(request.POST)
 
 
@@ -209,7 +208,7 @@ class UserFormView(View):
                 if user.is_active:
                     login(request, user)
                     # return redirect('music:index')
-                    return render (request, "index.html")
+                    return HttpResponseRedirect (reverse ('index'))
 
         # return render (request, self.template_name, {'form': form})
         return HttpResponseRedirect (reverse ('login_user'))
@@ -222,16 +221,16 @@ class LoginView(View):
     # display blank form
     def get(self, request):
         if request.user.is_authenticated ():
-            # return HttpResponseRedirect(reverse ('index'))
-            return render (request, "index.html")
+            return HttpResponseRedirect(reverse ('index'))
+            # return render (request, "index.html")
         form = self.form_class (None)
         return render (request, self.template_name, {'form': form})
 
 
     def post(self, request):
         if request.user.is_authenticated ():
-            # return HttpResponseRedirect(reverse ('music:index'))
-            return render (request, "index.html")
+            return HttpResponseRedirect(reverse ('index'))
+            # return render (request, "index.html")
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
@@ -240,8 +239,8 @@ class LoginView(View):
             if user.is_active:
                 login(request, user)
 
-                # return HttpResponseRedirect(reverse ('music:index'))
-                return render (request, "index.html")
+                return HttpResponseRedirect (reverse ('index'))
+                # return render (request, "index.html")
             else:
                 return HttpResponse("Inactive user.")
         else:
@@ -259,6 +258,18 @@ class LogoutView(View):
         # }
         return HttpResponseRedirect (reverse ('login_user'))
 
+
+class Home(View):
+
+    def get(self, request):
+        if request.user.is_authenticated ():
+            return render (request, "index.html")
+        else:
+            return HttpResponseRedirect (reverse ('login_user'))
+
+    # process form data
+    def post(self, request):
+       pass
 
 
 
