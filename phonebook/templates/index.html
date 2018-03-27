@@ -46,19 +46,29 @@
                         </div>
                     </div>
 
-                    <div class="bottom0 row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">phone</i>
-                            <input name="phone_no" id="phone_no" type="number" class="validate" required="required">
-                            <label for="phone_no" data-error="wrong" data-success="">Phone</label>
+                    <div class="bottom0 row" id="phone_no_div">
+                        <div class="col s9">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">phone</i>
+                                <input name="phone_no" id="phone_no" type="number" class="validate" required="required">
+                                <label for="phone_no" data-error="wrong" data-success="">Phone</label>
+                            </div>
+                        </div>
+                        <div class="s3 right">
+                            <button onclick="phone_add()" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></button>
                         </div>
                     </div>
 
-                    <div class="bottom0 row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">email</i>
-                            <input name="email_id" id="email_id" type="email" class="validate">
-                            <label for="email_id" data-error="wrong" data-success="">Email</label>
+                    <div class="bottom0 row" id="email_id_div">
+                        <div class="col s9">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">email</i>
+                                <input name="email_id" id="email_id" type="email" class="validate">
+                                <label for="email_id" data-error="wrong" data-success="">Email</label>
+                            </div>
+                        </div>
+                        <div class="s3 right">
+                            <button onclick="email_add()" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></button>
                         </div>
                     </div>
 
@@ -74,6 +84,29 @@
     </div>
 
 <script src="{% static 'custom/js/ajax.js' %}?{{ current_time }}" type="text/javascript">
+</script>
+    
+<script type="text/javascript">
+
+    var phone_count = 0;
+    function phone_add(){
+       phone_count++;
+       var to_append="<div class='input-field col s9'><i class='material-icons prefix'>phone</i><input name='phone_no"+phone_count+"' id='phone_no"+phone_count+"' type='number' class='validate' required='required'><label for='phone_no"+phone_count+"' data-error='wrong' data-success=''>Phone</label></div>";
+       
+       $("#phone_no_div").append(to_append);
+       
+    }
+    
+    var email_count = 0;
+    function email_add(){
+       email_count++;
+       var to_append="<div class='input-field col s9'><i class='material-icons prefix'>email</i><input name='email_id"+email_count+"' id='email_id"+email_count+"' type='number' class='validate' required='required'><label for='email_id"+email_count+"' data-error='wrong' data-success=''>Email</label></div>";
+       
+       $("#email_id_div").append(to_append);
+       
+    }
+    
+    
 </script>
 
 
