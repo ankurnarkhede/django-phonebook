@@ -39,13 +39,17 @@
                 <p style="line-height: 1.8;font-size: 15px;">
                 <span>Name: {{ name.name }}</span><br>
 
-                {% for phone in name.phones %}
+                {% for phone in name.phone_set.values %}
 
-                    <span>Phone: {{ name.phone }}</span><br>
+                    <span>Phone: {{ phone.phone_no }}</span><br>
+
                 {% endfor %}
 
-                <span>Email: {{ name.email_set }}</span><br>
+                {% for email in name.email_set.values %}
 
+                    <span>Email: {{ email.email_id }}</span><br>
+
+                {% endfor %}
             </div>
         </li>
 
