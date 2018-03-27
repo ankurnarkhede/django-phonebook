@@ -41,7 +41,7 @@ class api_contacts(APIView):
 
         if request.user.is_authenticated ():
             current_user=request.user
-            name = names.objects.filter (owner=current_user)
+            name = names.objects.filter (owner=current_user).order_by('name')
             for i in range (0, len (name)):
                 phon = phone.objects.filter (names_id=name[i].id)
                 name.phones = phon
@@ -55,7 +55,7 @@ class api_contacts(APIView):
 
         else:
             # current_user=request.user
-            name = names.objects.all()
+            name = names.objects.all().order_by('name')
             for i in range (0, len (name)):
                 phon = phone.objects.filter (names_id=name[i].id)
                 name.phones = phon
@@ -285,7 +285,7 @@ class contacts(APIView):
 
         if request.user.is_authenticated ():
             current_user=request.user
-            name = names.objects.filter (owner=current_user)
+            name = names.objects.filter (owner=current_user).order_by('name')
             for i in range (0, len (name)):
                 phon = phone.objects.filter (names_id=name[i].id)
                 name.phones = phon
@@ -299,7 +299,7 @@ class contacts(APIView):
 
         else:
             # current_user=request.user
-            name = names.objects.all()
+            name = names.objects.all().order_by('name')
             for i in range (0, len (name)):
                 phon = phone.objects.filter (names_id=name[i].id)
                 name.phones = phon
