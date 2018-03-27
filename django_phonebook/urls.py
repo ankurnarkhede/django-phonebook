@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     # REST url start
-    url (r'^contacts/', views.contacts.as_view (), name='contacts'),
+    url (r'^api-contacts/', views.api_contacts.as_view (), name='api_contacts'),
 
     # rest urls end
 
@@ -21,6 +21,12 @@ urlpatterns = [
     url (r'^signup/$', views.UserFormView.as_view (), name='signup_user'),
     url (r'^logout/$', views.LogoutView.as_view (), name='logout_user'),
     url (r'^$', views.Home.as_view (), name='index'),
+    # url (r'^/(?P<msg>\w+)$', views.Home.as_view (), name='index'),
+    url (r'^contacts/', views.contacts.as_view (), name='contacts' ),
+
+
+# url (r'^project/(?P<project_id>\d+)/$','user_profile.views.EditProject', name='edit_project'),,
+
 
     # template url end
 

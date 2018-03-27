@@ -27,12 +27,17 @@ from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, Ht
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.utils.decorators import method_decorator
 
+# other imports
+import time
+
 
 # rest views start
 
-class contacts(APIView):
+class api_contacts(APIView):
 
     def get(self, request):
+
+        print ('1. inside contacts get')
 
         if request.user.is_authenticated ():
             current_user=request.user
@@ -67,17 +72,17 @@ class contacts(APIView):
     def post(self, request):
         if request.user.is_authenticated ():
 
+            print('2. inside contacts post')
+
             # if user authenticated
             phone_no = []
             email_id = []
             for i, key in enumerate (request.POST):
                 value = request.POST[key]
                 if ('phone_no' in key):
-                    print (key + ':' + value)
                     phone_no.append (request.POST.get (key, None))
 
                 if ('email_id' in key):
-                    print (key + ':' + value)
                     email_id.append (request.POST.get (key, None))
 
             name = request.POST.get ('name', None)
@@ -119,11 +124,9 @@ class contacts(APIView):
             for i,key in enumerate(request.POST):
                 value = request.POST[key]
                 if('phone_no' in key):
-                    print (key+':'+value)
                     phone_no.append (request.POST.get (key, None))
 
                 if ('email_id' in key):
-                    print (key + ':' + value)
                     email_id.append (request.POST.get (key, None))
 
 
@@ -263,7 +266,7 @@ class Home(View):
 
     def get(self, request):
         if request.user.is_authenticated ():
-            return render (request, "index.html")
+            return render (request, "index.html",{'current_time': time.time()})
         else:
             return HttpResponseRedirect (reverse ('login_user'))
 
@@ -274,7 +277,143 @@ class Home(View):
 
 
 
+class contacts(APIView):
 
+    def get(self, request):
+
+        print ('1. inside contacts get')
+
+        if request.user.is_authenticated ():
+            current_user=request.user
+            name = names.objects.filter (owner=current_user)
+            for i in range (0, len (name)):
+                phon = phone.objects.filter (names_id=name[i].id)
+                name.phones = phon
+                emil = email.objects.filter (names_id=name[i].id)
+                name.emails = emil
+
+            contact_serial = contacts_serializer (name, many=True)
+            # print(contact_serial)
+            # print(contact_serial.data)
+            return Response (contact_serial.data)
+
+        else:
+            # current_user=request.user
+            name = names.objects.all()
+            for i in range (0, len (name)):
+                phon = phone.objects.filter (names_id=name[i].id)
+                name.phones = phon
+                emil = email.objects.filter (names_id=name[i].id)
+                name.emails = emil
+
+            contact_serial = contacts_serializer (name, many=True)
+            # print(contact_serial)
+            # print(contact_serial.data)
+            return Response (contact_serial.data)
+
+
+
+    def post(self, request):
+        if request.user.is_authenticated ():
+
+            print('2. inside contacts post')
+
+            # if user authenticated
+            phone_no = []
+            email_id = []
+            for i, key in enumerate (request.POST):
+                value = request.POST[key]
+                if ('phone_no' in key):
+                    phone_no.append (request.POST.get (key, None))
+
+                if ('email_id' in key):
+                    email_id.append (request.POST.get (key, None))
+
+            name = request.POST.get ('name', None)
+
+            temp_user = User.objects.get (username=request.user)
+
+            usr=names (
+                name=name,
+                owner=temp_user,
+            )
+            usr.save()
+
+            # taking object of recently saved name
+            # saved_name = names.objects.filter (name=name, owner=temp_user).order_by ('-id')[:1]
+
+            # saving multiple phones
+            for j in range (0, len (phone_no), +1):
+                phone (
+                    names_id=usr,
+                    phone_no=phone_no[j],
+                ).save ()
+
+            # saving multiple emails
+            for k in range (0, len (email_id), +1):
+                email (
+                    names_id=usr,
+                    email_id=email_id[k],
+                ).save ()
+
+            response_message = "Contact " + name + " saved!"
+            print(response_message)
+
+            params={'msg':response_message}
+
+            # return JsonResponse ({"message": response_message})
+            # return HttpResponseRedirect (reverse ('index'))
+            return render (request, "index.html",{'current_time': time.time(), 'msg': response_message})
+
+
+
+
+        else:
+            phone_no=[]
+            email_id=[]
+            for i,key in enumerate(request.POST):
+                value = request.POST[key]
+                if('phone_no' in key):
+                    phone_no.append (request.POST.get (key, None))
+
+                if ('email_id' in key):
+                    email_id.append (request.POST.get (key, None))
+
+
+            name = request.POST.get ('name', None)
+
+            temp_user = User.objects.get (username='lol')
+
+            usr=names (
+                name=name,
+                owner=temp_user,
+            )
+            usr.save()
+
+
+            # taking object of recently saved name
+            # saved_name = names.objects.filter (name=name, owner=temp_user).order_by ('-id')[:1]
+
+            # saving multiple phones
+            for j in range(0, len(phone_no),+1):
+
+                phone (
+                    names_id=usr,
+                    phone_no=phone_no[j],
+                ).save ()
+
+            # saving multiple emails
+            for k in range(0, len(email_id),+1):
+
+                email (
+                    names_id=usr,
+                    email_id=email_id[k],
+                ).save ()
+
+
+            response_message="Contact "+name+" saved!"
+
+            return JsonResponse({"message":response_message})
 
 
 
