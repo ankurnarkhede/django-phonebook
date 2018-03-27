@@ -28,50 +28,82 @@
 
 {% block body %}
 
-    <div class="row no-m-t no-m-b">
-        <div class="col s12 m12 l12">
-            <div class="row card darken-1 card_form_padding">
-                <h5 class="center-align">All Contact</h5>
-                <span></span>
-{#                <form id="add-contact-form" class="col s12"  enctype="multipart/form-data" method="POST" >#}
-                <form action="{% url 'contacts' %}" id="add-contact-form" class="col s12"  enctype="multipart/form-data" method="POST" >
 
-                    {% csrf_token %}
+<ul class="collapsible" data-collapsible="accordion">
 
-                    <div class="bottom0 row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">account_circle</i>
-                            <input name="name" id="name" type="text" class="validate" required="required">
-                            <label for="name" data-error="wrong" data-success="">Name</label>
+            <li>
+                <div class="collapsible-header truncate" style="font-size:18px;padding: 5px;padding-left: 13px;">&nbsp;<i class="material-icons">cloud_download</i>In This Corner of the World (2016)<span class="badge hide-on-med-and-down">3.43 GB</span></div>
+                <div class="collapsible-body">
+                    <p style="line-height: 1.8;font-size: 15px;">
+                    <span>Title: In This Corner of the World (2016)</span><br>
+                    <span>Date: March 26, 2018, 12:44 p.m.</span><br>
+                    <span>Tag: Movie</span><br>
+                    <span>Size: 3.43 GB</span><br>
+                    <span>Submitted by: Cartmanishere</span><br><br/>
+                    <div class="row">
+                        <div class="col s12 m4 l4">
+                             <a class="waves-effect waves-light btn indigo" href="/detail/1886/">View</a>
+
                         </div>
                     </div>
+                </div>
+            </li>
 
-                    <div class="bottom0 row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">phone</i>
-                            <input name="phone_no" id="phone_no" type="number" class="validate" required="required">
-                            <label for="phone_no" data-error="wrong" data-success="">Phone</label>
+            <li>
+                <div class="collapsible-header truncate" style="font-size:18px;padding: 5px;padding-left: 13px;">&nbsp;<i class="material-icons">cloud_download</i>Prozac Nation 2001 [720p WEB-DL AC3 5.1 x264 8bit]<span class="badge hide-on-med-and-down">3.01 GB</span></div>
+                <div class="collapsible-body">
+                    <p style="line-height: 1.8;font-size: 15px;">
+                    <span>Title: Prozac Nation 2001 [720p WEB-DL AC3 5.1 x264 8bit]</span><br>
+                    <span>Date: March 26, 2018, 12:44 p.m.</span><br>
+                    <span>Tag: Movie</span><br>
+                    <span>Size: 3.01 GB</span><br>
+                    <span>Submitted by: Cartmanishere</span><br><br/>
+                    <div class="row">
+                        <div class="col s12 m4 l4">
+                             <a class="waves-effect waves-light btn indigo" href="/detail/1884/">View</a>
+
                         </div>
                     </div>
+                </div>
+            </li>
 
-                    <div class="bottom0 row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">email</i>
-                            <input name="email_id" id="email_id" type="email" class="validate">
-                            <label for="email_id" data-error="wrong" data-success="">Email</label>
+            <li>
+                <div class="collapsible-header truncate" style="font-size:18px;padding: 5px;padding-left: 13px;">&nbsp;<i class="material-icons">cloud_download</i>Anything Else (2003)<span class="badge hide-on-med-and-down">1.63 GB</span></div>
+                <div class="collapsible-body">
+                    <p style="line-height: 1.8;font-size: 15px;">
+                    <span>Title: Anything Else (2003)</span><br>
+                    <span>Date: March 26, 2018, 12:44 p.m.</span><br>
+                    <span>Tag: Movie</span><br>
+                    <span>Size: 1.63 GB</span><br>
+                    <span>Submitted by: Cartmanishere</span><br><br/>
+                    <div class="row">
+                        <div class="col s12 m4 l4">
+                             <a class="waves-effect waves-light btn indigo" href="/detail/1881/">View</a>
+
                         </div>
                     </div>
+                </div>
+            </li>
 
+            <li>
+                <div class="collapsible-header truncate" style="font-size:18px;padding: 5px;padding-left: 13px;">&nbsp;<i class="material-icons">cloud_download</i>The Panic in Needle Park (1971)<span class="badge hide-on-med-and-down">1.64 GB</span></div>
+                <div class="collapsible-body">
+                    <p style="line-height: 1.8;font-size: 15px;">
+                    <span>Title: The Panic in Needle Park (1971)</span><br>
+                    <span>Date: March 26, 2018, 12:44 p.m.</span><br>
+                    <span>Tag: Movie</span><br>
+                    <span>Size: 1.64 GB</span><br>
+                    <span>Submitted by: Cartmanishere</span><br><br/>
+                    <div class="row">
+                        <div class="col s12 m4 l4">
+                             <a class="waves-effect waves-light btn indigo" href="/detail/1880/">View</a>
 
-{#                    <button class="btn waves-effect waves-light" type="submit" name="add_user" onclick="contact_save()" >Add Contact#}
-                    <button class="btn waves-effect waves-light" type="submit" name="add_user"  >Add Contact
-                        <i class="material-icons">person_add</i>
-                    </button>
-                </form>
-            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+</ul>
 
-        </div>
-    </div>
 
 <script src="{% static 'custom/js/ajax.js' %}?{{ current_time }}" type="text/javascript">
 </script>

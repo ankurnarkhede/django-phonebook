@@ -158,15 +158,15 @@
 
      <main class="mn-inner inner-active-sidebar">
         <div class="middle-content" style="width:100% !important;">
+            <div class="row">
+                {% block message %}
 
-            {% block message %}
+                {% endblock %}
 
-            {% endblock %}
+                {% block body %}
 
-            {% block body %}
-
-            {% endblock %}
-
+                {% endblock %}
+            </div>
 
         </div>
      </main>

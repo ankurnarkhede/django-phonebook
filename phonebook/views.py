@@ -295,7 +295,9 @@ class contacts(APIView):
             contact_serial = contacts_serializer (name, many=True)
             # print(contact_serial)
             # print(contact_serial.data)
-            return Response (contact_serial.data)
+            # return Response (contact_serial.data)
+            return render (request, "contacts-view.html",{'current_time': time.time() })
+
 
         else:
             # current_user=request.user
