@@ -100,7 +100,7 @@
     var email_count = 0;
     function email_add(){
        email_count++;
-       var to_append="<div class='input-field col s9'><i class='material-icons prefix'>email</i><input name='email_id"+email_count+"' id='email_id"+email_count+"' type='number' class='validate' required='required'><label for='email_id"+email_count+"' data-error='wrong' data-success=''>Email</label></div>";
+       var to_append="<div class='input-field col s9'><i class='material-icons prefix'>email</i><input name='email_id"+email_count+"' id='email_id"+email_count+"' type='email' class='validate' required='required'><label for='email_id"+email_count+"' data-error='wrong' data-success=''>Email</label></div>";
        
        $("#email_id_div").append(to_append);
        
