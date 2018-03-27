@@ -23,7 +23,7 @@ urlpatterns = [
     url (r'^$', views.Home.as_view (), name='index'),
     # url (r'^/(?P<msg>\w+)$', views.Home.as_view (), name='index'),
     url (r'^contacts/', views.contacts.as_view (), name='contacts' ),
-    url (r'^contacts-view/', views.contacts_home.as_view (), name='contacts' ),
+    url (r'^contacts-view/', views.contacts_home.as_view (), name='contacts-view' ),
 
 
 # url (r'^project/(?P<project_id>\d+)/$','user_profile.views.EditProject', name='edit_project'),,
