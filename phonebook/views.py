@@ -231,25 +231,7 @@ class LoginView(View):
 
 
     def post(self, request):
-        if request.user.is_authenticated ():
-            return HttpResponseRedirect(reverse ('index'))
-            # return render (request, "index.html")
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-
-                return HttpResponseRedirect (reverse ('index'))
-                # return render (request, "index.html")
-            else:
-                return HttpResponse("Inactive user.")
-        else:
-            return HttpResponseRedirect (reverse ('login_user'))
-
-
+        return HttpResponseRedirect (reverse ('login_user'))
 
 
 class LogoutView(View):
@@ -298,22 +280,12 @@ class contacts(APIView):
             # print(contact_serial)
             # print(contact_serial.data)
             # return Response (contact_serial.data)
-            return render (request, "contacts-view.html",{'current_time': time.time(), 'names':name })
+            return render (request, "contacts-list.html",{'current_time': time.time(), 'names':name })
 
 
         else:
-            # current_user=request.user
-            name = names.objects.all().order_by('name')
-            for i in range (0, len (name)):
-                phon = phone.objects.filter (names_id=name[i].id)
-                name.phones = phon
-                emil = email.objects.filter (names_id=name[i].id)
-                name.emails = emil
+            return HttpResponseRedirect (reverse ('login_user'))
 
-            contact_serial = contacts_serializer (name, many=True)
-            # print(contact_serial)
-            # print(contact_serial.data)
-            return Response (contact_serial.data)
 
 
 
@@ -373,55 +345,33 @@ class contacts(APIView):
 
 
         else:
-            phone_no=[]
-            email_id=[]
-            for i,key in enumerate(request.POST):
-                value = request.POST[key]
-                if('phone_no' in key):
-                    phone_no.append (request.POST.get (key, None))
-
-                if ('email_id' in key):
-                    email_id.append (request.POST.get (key, None))
-
-
-            name = request.POST.get ('name', None)
-
-            temp_user = User.objects.get (username='lol')
-
-            usr=names (
-                name=name,
-                owner=temp_user,
-            )
-            usr.save()
-
-
-            # taking object of recently saved name
-            # saved_name = names.objects.filter (name=name, owner=temp_user).order_by ('-id')[:1]
-
-            # saving multiple phones
-            for j in range(0, len(phone_no),+1):
-
-                phone (
-                    names_id=usr,
-                    phone_no=phone_no[j],
-                ).save ()
-
-            # saving multiple emails
-            for k in range(0, len(email_id),+1):
-
-                email (
-                    names_id=usr,
-                    email_id=email_id[k],
-                ).save ()
-
-
-            response_message="Contact "+name+" saved!"
-
-            return JsonResponse({"message":response_message})
+            return HttpResponseRedirect (reverse ('login_user'))
 
 
 
+class contacts_home(APIView):
 
+    def get(self, request):
+
+        if request.user.is_authenticated ():
+            current_user=request.user
+            name = names.objects.filter (owner=current_user).order_by('name')
+            for i in range (0, len (name)):
+                phon = phone.objects.filter (names_id=name[i].id)
+                name.phones = phon
+                emil = email.objects.filter (names_id=name[i].id)
+                name.emails = emil
+
+
+            contact_serial = contacts_serializer (name, many=True)
+            # print(contact_serial)
+            # print(contact_serial.data)
+            # return Response (contact_serial.data)
+            return render (request, "contacts-view.html",{'current_time': time.time(), 'names':name })
+
+
+        else:
+            return HttpResponseRedirect (reverse ('login_user'))
 
 
 

@@ -1,5 +1,14 @@
 $(document).ready(function() {
     $('#example').DataTable({
+        dom: 'lBfrtip',
+        // buttons: [
+        //     'copyHtml5',
+        //     'excelHtml5',
+        //     'csvHtml5',
+        //     'pdfHtml5'
+        // ],
+        buttons: ['copy','csv','excel','pdf','print'],
+
         language: {
             searchPlaceholder: 'Search records',
             sSearch: '',
@@ -15,3 +24,16 @@ $(document).ready(function() {
     });
     $('.dataTables_length select').addClass('browser-default');
 });
+
+
+// $(document).ready(function() {
+//     $('#example').DataTable( {
+//         dom: 'Bfrtip',
+//         buttons: [
+//             'copyHtml5',
+//             'excelHtml5',
+//             'csvHtml5',
+//             'pdfHtml5'
+//         ]
+//     } );
+// } )

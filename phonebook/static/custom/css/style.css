@@ -85,6 +85,13 @@ html{
 }
 
 
+.contact-button{
+	width: initial !important;
+	margin-right: 0px !important;
+	text-align: center !important;
+	float: none !important;
+}
+
 
 
 

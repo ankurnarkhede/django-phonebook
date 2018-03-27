@@ -24,7 +24,7 @@
     <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet" type="text/css"/>
 
 {#    custom css#}
-    <link href="{% static 'custom/css/style.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'custom/css/style.css' %}?{{ current_time }}" rel="stylesheet" type="text/css"/>
 
 
     <style type="text/css">
@@ -128,23 +128,11 @@
             <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
 
                 <li class="no-padding  ">
-                    <a class="waves-effect waves-grey  " href=""><i class="material-icons">add_circle</i>Schedule Invigilation</a>
+                    <a  class="waves-effect waves-grey"  href="{% url 'index' %}" ><i class="material-icons">add_circle</i>Home</a>
                 </li>
 
                 <li class="no-padding  ">
-                    <a class="waves-effect waves-grey  " href=""><i class="material-icons">sms</i>Send SMS</a>
-                </li>
-
-                <li class="no-padding  ">
-                    <a class="waves-effect waves-grey  " href=""><i class="material-icons">sms</i>Send SMS Automatically</a>
-                </li>
-
-                <li class="no-padding  ">
-                    <a class="waves-effect waves-grey  " href=""><i class="material-icons">account_circle</i>Users</a>
-                </li>
-
-                <li class="no-padding  ">
-                    <a class="waves-effect waves-grey  " href=""><i class="material-icons">help</i>Help</a>
+                    <a class="waves-effect waves-grey"  href="{% url 'contacts-view' %}" ><i class="material-icons">sms</i>Contacts List</a>
                 </li>
 
                 <li class="no-padding  ">

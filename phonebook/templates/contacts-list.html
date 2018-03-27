@@ -1,0 +1,129 @@
+
+{% extends 'fixed/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}PhoneBook{% endblock %}
+
+{% block message %}
+
+
+    {% if msg %}
+        <div class="row">
+            <div class="col s12 m12">
+                <div class="card teal lighten-2">
+                    <div class="card-content white-text">
+    {#                <span class="card-title">Card Title</span>#}
+                    <ul>
+                        <li>{{ msg }}</li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+
+{% block body %}
+
+
+    <div class="row no-m-t no-m-b">
+
+        <div class="col s12 m12 l12">
+            <div class="card">
+                <div class="card-content">
+                    <h5 class="text_center">Your Contacts</h5>
+                    <br>
+                    <table id="example" class="display responsive-table datatable-example">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Options</th>
+
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>id</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Options</th>
+
+                        </tr>
+                        </tfoot>
+
+
+                        <tbody>
+
+
+                        {% for name in names %}
+
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ name.name }}</td>
+                                <td>
+                                    {% for phone in name.phone_set.values %}
+                                        {% if forloop.first %}
+                                            {{ phone.phone_no }}
+                                        {% endif %}
+                                    {% endfor %}
+
+                                </td>
+                                <td>
+                                    {% for email in name.email_set.values %}
+                                        {% if forloop.first %}
+                                            {{ email.email_id }}
+                                        {% endif %}
+
+                                    {% endfor %}
+                                </td>
+                                <td></td>
+                            </tr>
+
+
+                        {% endfor %}
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="{% static 'assets/plugins/jquery/jquery-2.2.0.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/materialize/js/materialize.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/datatables/js/jquery.dataTables.min.js' %}"></script>
+
+
+
+
+
+    <script scr="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script scr="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+    <script scr="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
+    <script scr="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script scr="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script scr="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script scr="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
+    <script scr="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
+
+
+
+
+    <script src="{% static 'assets/js/pages/table-data.js' %}?{{ current_time }}"></script>
+
+<script src="{% static 'custom/js/ajax.js' %}?{{ current_time }}" type="text/javascript">
+</script>
+
+
+{% endblock %}
+
