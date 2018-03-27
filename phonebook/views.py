@@ -231,7 +231,26 @@ class LoginView(View):
 
 
     def post(self, request):
-        return HttpResponseRedirect (reverse ('login_user'))
+        if request.user.is_authenticated ():
+            return HttpResponseRedirect(reverse ('index'))
+            # return render (request, "index.html")
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+
+                return HttpResponseRedirect (reverse ('index'))
+                # return render (request, "index.html")
+            else:
+                return HttpResponse("Inactive user.")
+        else:
+            return HttpResponseRedirect (reverse ('login_user'))
+
+
+
 
 
 class LogoutView(View):
