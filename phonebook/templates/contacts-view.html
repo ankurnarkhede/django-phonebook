@@ -29,80 +29,30 @@
 {% block body %}
 
 
-<ul class="collapsible" data-collapsible="accordion">
+    <ul class="collapsible" data-collapsible="accordion">
 
-            <li>
-                <div class="collapsible-header truncate" style="font-size:18px;padding: 5px;padding-left: 13px;">&nbsp;<i class="material-icons">cloud_download</i>In This Corner of the World (2016)<span class="badge hide-on-med-and-down">3.43 GB</span></div>
-                <div class="collapsible-body">
-                    <p style="line-height: 1.8;font-size: 15px;">
-                    <span>Title: In This Corner of the World (2016)</span><br>
-                    <span>Date: March 26, 2018, 12:44 p.m.</span><br>
-                    <span>Tag: Movie</span><br>
-                    <span>Size: 3.43 GB</span><br>
-                    <span>Submitted by: Cartmanishere</span><br><br/>
-                    <div class="row">
-                        <div class="col s12 m4 l4">
-                             <a class="waves-effect waves-light btn indigo" href="/detail/1886/">View</a>
+    {% for name in names %}
 
-                        </div>
-                    </div>
-                </div>
-            </li>
+        <li>
+            <div class="collapsible-header truncate" style="font-size:18px;padding: 5px;padding-left: 13px;">&nbsp;<i class="material-icons">cloud_download</i>{{ name.name }}</div>
+            <div class="collapsible-body">
+                <p style="line-height: 1.8;font-size: 15px;">
+                <span>Name: {{ name.name }}</span><br>
 
-            <li>
-                <div class="collapsible-header truncate" style="font-size:18px;padding: 5px;padding-left: 13px;">&nbsp;<i class="material-icons">cloud_download</i>Prozac Nation 2001 [720p WEB-DL AC3 5.1 x264 8bit]<span class="badge hide-on-med-and-down">3.01 GB</span></div>
-                <div class="collapsible-body">
-                    <p style="line-height: 1.8;font-size: 15px;">
-                    <span>Title: Prozac Nation 2001 [720p WEB-DL AC3 5.1 x264 8bit]</span><br>
-                    <span>Date: March 26, 2018, 12:44 p.m.</span><br>
-                    <span>Tag: Movie</span><br>
-                    <span>Size: 3.01 GB</span><br>
-                    <span>Submitted by: Cartmanishere</span><br><br/>
-                    <div class="row">
-                        <div class="col s12 m4 l4">
-                             <a class="waves-effect waves-light btn indigo" href="/detail/1884/">View</a>
+                {% for phone in name.phones %}
 
-                        </div>
-                    </div>
-                </div>
-            </li>
+                    <span>Phone: {{ name.phone }}</span><br>
+                {% endfor %}
 
-            <li>
-                <div class="collapsible-header truncate" style="font-size:18px;padding: 5px;padding-left: 13px;">&nbsp;<i class="material-icons">cloud_download</i>Anything Else (2003)<span class="badge hide-on-med-and-down">1.63 GB</span></div>
-                <div class="collapsible-body">
-                    <p style="line-height: 1.8;font-size: 15px;">
-                    <span>Title: Anything Else (2003)</span><br>
-                    <span>Date: March 26, 2018, 12:44 p.m.</span><br>
-                    <span>Tag: Movie</span><br>
-                    <span>Size: 1.63 GB</span><br>
-                    <span>Submitted by: Cartmanishere</span><br><br/>
-                    <div class="row">
-                        <div class="col s12 m4 l4">
-                             <a class="waves-effect waves-light btn indigo" href="/detail/1881/">View</a>
+                <span>Email: {{ name.email_set }}</span><br>
 
-                        </div>
-                    </div>
-                </div>
-            </li>
+            </div>
+        </li>
 
-            <li>
-                <div class="collapsible-header truncate" style="font-size:18px;padding: 5px;padding-left: 13px;">&nbsp;<i class="material-icons">cloud_download</i>The Panic in Needle Park (1971)<span class="badge hide-on-med-and-down">1.64 GB</span></div>
-                <div class="collapsible-body">
-                    <p style="line-height: 1.8;font-size: 15px;">
-                    <span>Title: The Panic in Needle Park (1971)</span><br>
-                    <span>Date: March 26, 2018, 12:44 p.m.</span><br>
-                    <span>Tag: Movie</span><br>
-                    <span>Size: 1.64 GB</span><br>
-                    <span>Submitted by: Cartmanishere</span><br><br/>
-                    <div class="row">
-                        <div class="col s12 m4 l4">
-                             <a class="waves-effect waves-light btn indigo" href="/detail/1880/">View</a>
+    {% endfor %}
 
-                        </div>
-                    </div>
-                </div>
-            </li>
-</ul>
+
+    </ul>
 
 
 <script src="{% static 'custom/js/ajax.js' %}?{{ current_time }}" type="text/javascript">

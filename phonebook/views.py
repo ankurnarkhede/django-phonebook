@@ -292,11 +292,13 @@ class contacts(APIView):
                 emil = email.objects.filter (names_id=name[i].id)
                 name.emails = emil
 
+            print(name)
+
             contact_serial = contacts_serializer (name, many=True)
             # print(contact_serial)
             # print(contact_serial.data)
             # return Response (contact_serial.data)
-            return render (request, "contacts-view.html",{'current_time': time.time() })
+            return render (request, "contacts-view.html",{'current_time': time.time(), 'names':name })
 
 
         else:
